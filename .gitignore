@@ -1,0 +1,6 @@
+*
+!.gitignore
+!f95
+!TEST
+!clcoef.txt
+!xpc.txt

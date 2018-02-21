@@ -1,0 +1,17 @@
+*
+!.gitignore
+!clcoef_h.f90
+!clcoef_m.f90
+!clock_m.f90
+!const_kind_m.f90
+!const_numphys_h.f90
+!date_time_m.f90
+!gfile_m.f90
+!log_m.f90
+!vfile_m.f90
+!xpc.f90
+!xpc_h.f90
+!xpc_m.f90
+!xpcontrol_h.f90
+!xpcontrol_m.f90
+!Makefile.xpc
