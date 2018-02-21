@@ -1,0 +1,27 @@
+
+LOG FILE: test1.log
+
+09:05:29 21 February 2018       
+
+Log  : Control data file = test1.ctl
+Log  : xpc data file, prog_input_file = null
+Log  : Info   : xpc_m:xpc_initfile: 1:- null filename ignored
+Log  : Control data file = test1_xpc.out
+Log  :                         run time  =  1.29900000E-03  secs
+Log  :     qcontrol initialisation time  =  1.67000000E-04  secs
+Log  :                   initialisation  =  1.50000000E-05  secs
+Log  :                  evaluation time  =  2.00000000E-05  secs
+Log  :                 diagnostics time  =  1.00000000E-06  secs
+Log  :                    vtk plot time  =  1.00000000E-06  secs
+Log  :                     gnuplot time  =  2.00000000E-06  secs
+Log  :                outfile_init time  =  4.65000000E-04  secs
+
+
+ Error Summary 
+ ------------- 
+ total number of errors   =       0
+ number of serious errors =       0
+09:05:29 21 February 2018       
+
+END OF LOG FILE
+
