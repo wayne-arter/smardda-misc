@@ -1,0 +1,9 @@
+  real(kr8) :: a=1 !< atomic number
+  real(kr8) :: z=1 !< effective charge
+  real(kr8) :: b=1 !< imposed Bfield
+  real(kr8) :: t_e=10 !< electron temperature
+  real(kr8) :: t_i=10 !< ion temperature
+  real(kr8) :: c_n=1.e+18 !< number density factor
+  real(kr8) :: n=1.e+18 !< electron number density
+  real(kr8) :: c_lambda=14 !< Coulomb logarithm factor
+  real(kr8) :: lambda=14 !< Coulomb logarithm

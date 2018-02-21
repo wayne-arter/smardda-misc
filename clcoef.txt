@@ -1,0 +1,20 @@
+  real(kr8) :: tau_e !< electron collision time
+  real(kr8) :: tau_i !< ion collision time
+  real(kr8) :: omega_ce !< electron gyrofrequency
+  real(kr8) :: omega_ci !< ion gyrofrequency
+  real(kr8) :: m_i !< ion mass (not used)
+  real(kr8) :: kappab_epara !< parallel electron thermal transport (Braginskii)
+  real(kr8) :: kappab_eperp !< perpendicular electron thermal transport (Braginskii)
+  real(kr8) :: kappab_ipara !< parallel ion thermal transport (Braginskii)
+  real(kr8) :: kappab_iperp !< perpendicular ion thermal transport (Braginskii)
+  real(kr8) :: x_e !<  electron gyrofrequency * electron collision time
+  real(kr8) :: x_i !< ion gyrofrequency * ion collision time
+  real(kr8) :: nu_epara !< parallel electron viscosity
+  real(kr8) :: nu_eperp !< perpendicular electron viscosity
+  real(kr8) :: nu_ipara !< parallel ion viscosity
+  real(kr8) :: nu_iperp !< perpendicular ion viscosity
+  real(kr8) :: kappa_epara !< parallel electron thermal diffusivity
+  real(kr8) :: kappa_eperp !< perpendicular electron thermal diffusivity
+  real(kr8) :: kappa_ipara !< parallel ion thermal diffusivity
+  real(kr8) :: kappa_iperp !< perpendicular ion thermal diffusivity
+  real(kr8) :: eta !<  parallel resistive diffusion
