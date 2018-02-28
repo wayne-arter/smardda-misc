@@ -218,6 +218,14 @@ subroutine clcoef_calc(self,xpnumerics)
   real(kr8) :: t_i !< local variable
   real(kr8) :: c_n !< local variable
   real(kr8) :: lambda !< local variable
+  real(kr8) :: depth !< local variable
+  real(kr8) :: lpscale !< local variable
+  real(kr8) :: polang !< local variable
+  real(kr8) :: rmajor !< local variable
+  real(kr8) :: rminor !< local variable
+  real(kr8) :: b1 !< local variable
+
+  real(kr8) :: b1r !< local variable
 
   a = xpnumerics%a
   z = xpnumerics%z
@@ -227,11 +235,37 @@ subroutine clcoef_calc(self,xpnumerics)
   t_i = xpnumerics%t_i
   c_n = xpnumerics%c_n
   lambda = xpnumerics%lambda
+  depth = xpnumerics%depth
+  lpscale = xpnumerics%lpscale
+  polang = xpnumerics%polang
+  rmajor = xpnumerics%rmajor
+  rminor = xpnumerics%rminor
+  b1 = xpnumerics%b1
+
+  field_type: select case(xpnumerics%b_formula)
+  case('shear')
+  b1r=b1*depth/rminor
+  case('toroidal')
+  b1r=b1*rminor/rmajor
+  case default
+  b1r=b1
+  end select field_type
+
+!       coulomb log formula electron-electron
+  if (lambda<=0) then
+     if(t_e<=10.0) then
+        lambda=23+log(1000*t_e*sqrt(t_e)/sqrt(n))
+     else
+        lambda=24+log(1000*t_e/sqrt(n))
+     end if
+  end if
 
   !> temperatures in eV
   z_te = const_charge
 
   m_i=a*const_massp
+
+  self%lambda=lambda
   !5: omega_ce=e/const_masse*B;
   self%omega_ce=(b*const_charge)/const_masse
   !8: omega_ci=Z*const_charge*B/(A*m_p);
@@ -259,7 +293,7 @@ subroutine clcoef_calc(self,xpnumerics)
   !11: nu_epara=0.73*k_B*T_e/const_masse*tau_e;
   self%nu_epara=(0.73*z_te*t_e*self%tau_e)/const_masse
   !12: nu_ipara=0.96*k_B*T_i/m_i*tau_i;
-  self%nu_ipara=(0.96*z_te*self%tau_i)/m_i
+  self%nu_ipara=(0.96*z_te*t_i*self%tau_i)/m_i
   !15: kappa_epara=13*sqrt(2*const_pid^3)/sqrt(const_masse)*const_epsilon0^2/e^4*(k_B*T_e)^(5/2)/N/Lambda;
   self%kappa_epara=(13*sqrt(const_pid)*sqrt(z_te*t_e)*sqrt(2._kr8)*const_epsilon0**2*  &
  &z_te**2*const_pid*t_e**2)/(z**2*sqrt(const_masse)*const_charge**4*lambda*n)
@@ -280,6 +314,12 @@ subroutine clcoef_calc(self,xpnumerics)
  &(9*sqrt(const_pid)*const_pi*sqrt(z_te*t_i)*const_epsilon0**2*b**2)
   self%kappa_eperp=self%kappa_epara*(4.7/3.2)/self%x_e**2
 
+  self%ra=2*z_te*(t_e+t_i)*depth**4*cos(polang)/&
+ &(rmajor*lpscale*m_i*self%kappa_iperp*self%nu_iperp)
+  self%chandraq=b1r**2*depth**2/(m_i*n*const_mu0*self%eta*self%nu_iperp)
+  self%beta=2*const_mu0*n*z_te*(t_e+t_i)*depth*cos(polang)/(lpscale*b1r**2)
+  self%lunds=b1r*depth/(sqrt(m_i*n*const_mu0)*self%eta)
+
 end subroutine clcoef_calc
 !---------------------------------------------------------------------
 !> write out classical coefficients
@@ -294,6 +334,7 @@ subroutine clcoef_write(self,channel)
   logical :: unitused !< flag to test unit is available
   character(30), parameter :: zcfmt='(A,1P,G14.5)' !< format sta
   
+  write(channel,zcfmt) 'lambda = ', self%lambda
   write(channel,zcfmt) 'omega_ce = ', self%omega_ce
   write(channel,zcfmt) 'omega_ci = ', self%omega_ci
   write(channel,zcfmt) 'tau_e = ', self%tau_e
@@ -313,6 +354,10 @@ subroutine clcoef_write(self,channel)
   write(channel,zcfmt) 'kappa_epara = ', self%kappa_epara
   write(channel,zcfmt) 'kappa_eperp = ', self%kappa_eperp
   write(channel,zcfmt) 'eta = ', self%eta
+  write(channel,zcfmt) 'ra = ', self%ra
+  write(channel,zcfmt) 'chandraq = ', self%chandraq
+  write(channel,zcfmt) 'beta = ', self%beta
+  write(channel,zcfmt) 'lunds = ', self%lunds
 
 end subroutine clcoef_write
 !---------------------------------------------------------------------
@@ -370,6 +415,11 @@ subroutine clcoef_numcalc(self,xpnumerics)
  &(9*sqrt(const_pid)*const_pi*const_epsilon0**2)
   self%c_kappa_eperp=self%c_kappa_epara*(4.7/3.2)/self%c_x_e**2
 
+  self%c_ra=2*const_charge/(const_massp*self%c_kappa_iperp*self%c_nu_iperp)
+  self%c_chandraq=1/(const_massp*c_n*const_mu0*self%c_eta*self%c_nu_iperp)
+  self%c_beta=2*const_mu0*const_charge*c_n
+  self%c_lunds=1/(sqrt(const_massp*c_n*const_mu0)*self%c_eta)
+
 end subroutine clcoef_numcalc
 !---------------------------------------------------------------------
 !> write out classical numerical coefficients
@@ -402,6 +452,10 @@ subroutine clcoef_numwrite(self,channel)
   write(channel,zcfmt) 'c_kappa_epara = ', self%c_kappa_epara
   write(channel,zcfmt) 'c_kappa_eperp = ', self%c_kappa_eperp
   write(channel,zcfmt) 'c_eta = ', self%c_eta
+  write(channel,zcfmt) 'c_ra = ', self%c_ra
+  write(channel,zcfmt) 'c_chandraq = ', self%c_chandraq
+  write(channel,zcfmt) 'c_beta = ', self%c_beta
+  write(channel,zcfmt) 'c_lunds = ', self%c_lunds
 
 end subroutine clcoef_numwrite
 !---------------------------------------------------------------------

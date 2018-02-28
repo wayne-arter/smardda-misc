@@ -74,7 +74,7 @@ subroutine xpc_initfile(file,channel)
   if(status/=0)then
      !! error opening file
      print '("Fatal error: Unable to open control file, ",a)',controlfile
-     call log_error(m_name,s_name,1,error_fatal,'Cannot open control data file')
+     call log_error(m_name,s_name,2,error_fatal,'Cannot open control data file')
      stop
   end if
 
@@ -101,6 +101,13 @@ subroutine xpc_readcon(selfn,channel)
   real(kr8) :: electron_number_density !< self-explanatory local
   real(kr8) :: Coulomb_logarithm_factor !< self-explanatory local
   real(kr8) :: Coulomb_logarithm !< self-explanatory local
+  real(kr8) :: layer_depth !< self-explanatory local
+  real(kr8) :: pressure_lengthscale !< self-explanatory local
+  real(kr8) :: poloidal_angle !< self-explanatory local
+  real(kr8) :: major_radius !< self-explanatory local
+  real(kr8) :: minor_radius !< self-explanatory local
+  real(kr8) :: effective_Bfield !< self-explanatory local
+  character(80) :: effective_field_formula !< self-explanatory local
 
   real(kr8), dimension(MAX_NUMBER_OF_PARAMETERS) :: general_real_parameters  !< local variable
   integer(ki4), dimension(MAX_NUMBER_OF_PARAMETERS) :: general_integer_parameters  !< local variable
@@ -118,6 +125,13 @@ subroutine xpc_readcon(selfn,channel)
  & electron_number_density , &
  & Coulomb_logarithm_factor , &
  & Coulomb_logarithm , &
+ & layer_depth , &
+ & pressure_lengthscale , &
+ & poloidal_angle , &
+ & major_radius , &
+ & minor_radius , &
+ & effective_Bfield , &
+ & effective_field_formula , &
  &power_split, xpc_formula, &
  &general_real_parameters, number_of_real_parameters, &
  &general_integer_parameters, number_of_integer_parameters
@@ -139,6 +153,13 @@ subroutine xpc_readcon(selfn,channel)
   electron_number_density = 1.e+18
   Coulomb_logarithm_factor = 1
   Coulomb_logarithm = 14
+  layer_depth = 0.01
+  pressure_lengthscale = 0.01
+  poloidal_angle = 0.0
+  major_radius = 1.0
+  minor_radius = 0.1
+  effective_Bfield = 1.0
+  effective_field_formula = 'null'
 
   if(present(channel).AND.channel/=0) then
      !! assume unit already open and reading infile
@@ -219,6 +240,13 @@ subroutine xpc_readcon(selfn,channel)
   selfn%n = electron_number_density
   selfn%c_lambda = Coulomb_logarithm_factor
   selfn%lambda = Coulomb_logarithm
+  selfn%depth = layer_depth
+  selfn%lpscale = pressure_lengthscale
+  selfn%polang = poloidal_angle
+  selfn%rmajor = major_radius
+  selfn%rminor = minor_radius
+  selfn%b1 = effective_Bfield
+  selfn%b_formula = effective_field_formula
 
 end  subroutine xpc_readcon
 !---------------------------------------------------------------------
@@ -242,6 +270,7 @@ subroutine xpc_dia(self)
   !! local
   character(*), parameter :: s_name='xpc_dia' !< subroutine name
 
+  call log_value("power ",self%pow)
 
 end subroutine xpc_dia
 !---------------------------------------------------------------------
@@ -280,6 +309,7 @@ function xpc_fn(self,psi)
   character(*), parameter :: s_name='xpc_fn' !< subroutine name
   real(kr8) :: pow !< local variable
 
+  pow=0._kr8
   !! select xpc
   formula_chosen: select case (self%n%formula)
   case('userdefined')
@@ -347,7 +377,7 @@ subroutine xpc_write(self,channel)
   end if
 
   call clcoef_write(self%clcoef,iout)
-
+ 
   call clcoef_numwrite(self%clcoef,iout)
 
 end subroutine xpc_write

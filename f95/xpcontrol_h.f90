@@ -1,7 +1,6 @@
 module xpcontrol_h
 
   use const_kind_m
-  use clcoef_h
 
 !! public types
 

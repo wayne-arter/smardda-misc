@@ -5,8 +5,8 @@ module xpcontrol_m
   use xpcontrol_h
   use xpc_h
   use xpc_m
-  use clcoef_m
   use clcoef_h
+  use clcoef_m
 
   implicit none
   private
@@ -80,9 +80,9 @@ subroutine xpcontrol_read(file,param,xpnumerics,ccnumerics,plot)
 
   !! arguments
   type(xpfiles_t), intent(out) :: file !< file names
-  type(xpparams_t), intent(out) :: param !< control parameters
-  type(xpnumerics_t), intent(out) :: xpnumerics !< controls for transport coefficients
   type(ccnumerics_t), intent(out) :: ccnumerics !< controls for classical coefficients
+  type(xpparams_t), intent(out) :: param !< control parameters
+  type(xpnumerics_t), intent(out) :: xpnumerics !< controls for xpc
   type(xpplots_t), intent(out) :: plot !< plot selectors
 
   !!local
@@ -200,11 +200,12 @@ subroutine xpcontrol_read(file,param,xpnumerics,ccnumerics,plot)
   end if
 
   !! store values
+  call xpc_readcon(xpnumerics,nin)
+  
+  call clcoef_readcon(ccnumerics,nin)
   plot%xpcout = plot_xpcout
   plot%vtk = plot_vtk
   plot%gnu = plot_gnu
-  call xpc_readcon(xpnumerics,nin)
-  call clcoef_readcon(ccnumerics,nin)
 
 end  subroutine xpcontrol_read
 

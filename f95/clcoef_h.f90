@@ -15,11 +15,12 @@ module clcoef_h
 
   type, public :: clcoef_t
      real(kr8) :: pow !< power
+     real(kr8) :: lambda !< Coulomb logarithm used
      real(kr8) :: tau_e !< electron collision time
      real(kr8) :: tau_i !< ion collision time
      real(kr8) :: omega_ce !< electron gyrofrequency
      real(kr8) :: omega_ci !< ion gyrofrequency
-     real(kr8) :: m_i !< ion mass
+     real(kr8) :: m_i !< ion mass (not used)
      real(kr8) :: kappab_epara !< parallel electron thermal transport (Braginskii)
      real(kr8) :: kappab_eperp !< perpendicular electron thermal transport (Braginskii)
      real(kr8) :: kappab_ipara !< parallel ion thermal transport (Braginskii)
@@ -35,6 +36,10 @@ module clcoef_h
      real(kr8) :: kappa_ipara !< parallel ion thermal diffusivity
      real(kr8) :: kappa_iperp !< perpendicular ion thermal diffusivity
      real(kr8) :: eta !< parallel resistive diffusion
+     real(kr8) :: ra !<  Rayleigh number
+     real(kr8) :: chandraq !<  Chandrasekhar number
+     real(kr8) :: beta !<  plasma beta
+     real(kr8) :: lunds !<  Lundquist number
 
      real(kr8) :: c_tau_e !< numerical constant for electron collision time
      real(kr8) :: c_tau_i !< numerical constant for ion collision time
@@ -55,6 +60,10 @@ module clcoef_h
      real(kr8) :: c_kappa_ipara !< numerical constant for parallel ion thermal diffusivity
      real(kr8) :: c_kappa_iperp !< numerical constant for perpendicular ion thermal diffusivity
      real(kr8) :: c_eta !< numerical constant for parallel resistive diffusion
+     real(kr8) :: c_ra !< numerical constant for Rayleigh number
+     real(kr8) :: c_chandraq !< numerical constant for Chandrasekhar number
+     real(kr8) :: c_beta !< numerical constant for plasma beta
+     real(kr8) :: c_lunds !< numerical constant for Lundquist number
      type(ccnumerics_t) :: n !< control  parameters
   end type clcoef_t
 

@@ -71,14 +71,13 @@ gfile_m.f90 : log_m.mod
 vfile_m.f90 : const_kind_m.mod
 vfile_m.f90 : log_m.mod
 xpcontrol_h.f90 : const_kind_m.mod
-xpcontrol_h.f90 : clcoef_h.mod
 xpcontrol_m.f90 : const_kind_m.mod
 xpcontrol_m.f90 : log_m.mod
 xpcontrol_m.f90 : xpcontrol_h.mod
 xpcontrol_m.f90 : xpc_h.mod
 xpcontrol_m.f90 : xpc_m.mod
-xpcontrol_m.f90 : clcoef_m.mod
 xpcontrol_m.f90 : clcoef_h.mod
+xpcontrol_m.f90 : clcoef_m.mod
 xpc_h.f90 : const_kind_m.mod
 xpc_h.f90 : clcoef_h.mod
 xpc_m.f90 : xpc_h.mod
@@ -89,7 +88,6 @@ xpc_m.f90 : clcoef_h.mod
 xpc_m.f90 : clcoef_m.mod
 clcoef_h.f90 : const_kind_m.mod
 clcoef_m.f90 : clcoef_h.mod
-clcoef_m.f90 : xpc_h.mod
 clcoef_m.f90 : log_m.mod
 clcoef_m.f90 : const_numphys_h.mod
 clcoef_m.f90 : const_kind_m.mod

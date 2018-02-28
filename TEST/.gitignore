@@ -1,0 +1,5 @@
+*
+!.gitignore
+!test1.ctl
+!test1.log
+!test1_xpc.out

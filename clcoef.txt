@@ -18,3 +18,24 @@
   real(kr8) :: kappa_ipara !< parallel ion thermal diffusivity
   real(kr8) :: kappa_iperp !< perpendicular ion thermal diffusivity
   real(kr8) :: eta !<  parallel resistive diffusion
+
+  real(kr8) :: c_tau_e !< numerical constant for electron collision time
+  real(kr8) :: c_tau_i !< numerical constant for ion collision time
+  real(kr8) :: c_omega_ce !< numerical constant for electron gyrofrequency
+  real(kr8) :: c_omega_ci !< numerical constant for ion gyrofrequency
+  real(kr8) :: c_kappab_epara !< numerical constant for parallel electron thermal transport (Braginskii)
+  real(kr8) :: c_kappab_eperp !< numerical constant for perpendicular electron thermal transport (Braginskii)
+  real(kr8) :: c_kappab_ipara !< numerical constant for parallel ion thermal transport (Braginskii)
+  real(kr8) :: c_kappab_iperp !< numerical constant for perpendicular ion thermal transport (Braginskii)
+  real(kr8) :: c_x_e !< numerical constant for electron gyrofrequency * electron collision time
+  real(kr8) :: c_x_i !< numerical constant for ion gyrofrequency * ion collision time
+  real(kr8) :: c_nu_epara !< numerical constant for parallel electron viscosity
+  real(kr8) :: c_nu_eperp !< numerical constant for perpendicular electron viscosity
+  real(kr8) :: c_nu_ipara !< numerical constant for parallel ion viscosity
+  real(kr8) :: c_nu_iperp !< numerical constant for perpendicular ion viscosity
+  real(kr8) :: c_kappa_epara !< numerical constant for parallel electron thermal diffusivity
+  real(kr8) :: c_kappa_eperp !< numerical constant for perpendicular electron thermal diffusivity
+  real(kr8) :: c_kappa_ipara !< numerical constant for parallel ion thermal diffusivity
+  real(kr8) :: c_kappa_iperp !< numerical constant for perpendicular ion thermal diffusivity
+  real(kr8) :: c_eta !< numerical constant for parallel resistive diffusion
+

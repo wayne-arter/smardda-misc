@@ -65,15 +65,16 @@ program p_xpc
 !--------------------------------------------------------------------------
 !! read control file
 
-  call clock_start(2,'qcontrol initialisation time')
+  call clock_start(2,'control initialisation time')
   call xpcontrol_init(fileroot)
   call xpcontrol_read(file,param,xpc%n,xpc%clcoef%n,plot)
   call clock_stop(2)
 !--------------------------------------------------------------------------
-!! data for program
+!! other data for xpc and/or read xpc controls directly
 
-  call clock_start(15,'initialisation')
+  call clock_start(15,'initialisation time')
   call xpc_initfile(file%xpcdata,nin)
+  !call xpc_readcon(xpc%n)
   call clock_stop(15)
 !--------------------------------------------------------------------------
 !! do the main work
