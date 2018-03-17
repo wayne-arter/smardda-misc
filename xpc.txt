@@ -10,7 +10,7 @@
   real(kr8) :: depth=0.01 !< layer depth
   real(kr8) :: lpscale=0.01 !< pressure lengthscale
   real(kr8) :: polang=0.0 !< poloidal angle
-  real(kr8) :: rmajor !< major radius
-  real(kr8) :: rminor !< minor radius
-  real(kr8) :: b1 !< effective Bfield
-  character(80) :: b formula !< effective field formula
+  real(kr8) :: rmajor=1.0 !< major radius
+  real(kr8) :: rminor=0.1 !< minor radius
+  real(kr8) :: b1=1.0 !< effective Bfield
+  character(80) :: b_formula='null' !< effective field formula

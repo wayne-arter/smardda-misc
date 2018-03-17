@@ -18,6 +18,9 @@
   real(kr8) :: kappa_ipara !< parallel ion thermal diffusivity
   real(kr8) :: kappa_iperp !< perpendicular ion thermal diffusivity
   real(kr8) :: eta !<  parallel resistive diffusion
+  real(kr8) :: ra !<  Rayleigh number
+  real(kr8) :: beta !<  plasma beta
+  real(kr8) :: lunds !<  Lundquist number
 
   real(kr8) :: c_tau_e !< numerical constant for electron collision time
   real(kr8) :: c_tau_i !< numerical constant for ion collision time
@@ -38,4 +41,7 @@
   real(kr8) :: c_kappa_ipara !< numerical constant for parallel ion thermal diffusivity
   real(kr8) :: c_kappa_iperp !< numerical constant for perpendicular ion thermal diffusivity
   real(kr8) :: c_eta !< numerical constant for parallel resistive diffusion
-
+  real(kr8) :: c_ra !< numerical constant for Rayleigh number
+  real(kr8) :: c_chandraq !< numerical constant for Chandrasekhar number
+  real(kr8) :: c_beta !< numerical constant for plasma beta
+  real(kr8) :: c_lunds !< numerical constant for Lundquist number
