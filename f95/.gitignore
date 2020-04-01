@@ -18,3 +18,4 @@
 !xpcontrol_m.f90
 !Makefile.xpc
 !TEST
+!config.inc
