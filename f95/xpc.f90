@@ -13,6 +13,7 @@ program p_xpc
   use xpc_m
   use clcoef_h
   use clcoef_m
+  use misc_m
 
   implicit none
 

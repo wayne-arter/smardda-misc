@@ -1,5 +1,7 @@
 *
 !.gitignore
+!lowor.f
+!isnumb.f
 !clcoef_h.f90
 !clcoef_m.f90
 !clock_m.f90
@@ -15,3 +17,4 @@
 !xpcontrol_h.f90
 !xpcontrol_m.f90
 !Makefile.xpc
+!TEST
