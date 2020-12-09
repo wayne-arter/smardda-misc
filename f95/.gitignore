@@ -1,7 +1,5 @@
 *
 !.gitignore
-!lowor.f
-!isnumb.f
 !clcoef_h.f90
 !clcoef_m.f90
 !clock_m.f90
@@ -20,3 +18,5 @@
 !TEST
 !config.inc
 !misc_m.f90
+!LIB
+!config
