@@ -33,7 +33,7 @@ module xpc_h
   type, public :: xpc_t
      real(kr8) :: pow !< power
      type(xpnumerics_t) :: n !< control  parameters
-  type(clcoef_t) :: clcoef !< classical coefficients
+     type(clcoef_t) :: clcoef !< classical coefficients
   end type xpc_t
 
 end module xpc_h

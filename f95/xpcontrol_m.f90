@@ -203,6 +203,25 @@ subroutine xpcontrol_read(file,param,xpnumerics,ccnumerics,plot)
   call xpc_readcon(xpnumerics,nin)
   
   call clcoef_readcon(ccnumerics,nin)
+
+  ccnumerics%a = xpnumerics%a
+  ccnumerics%z = xpnumerics%z
+  ccnumerics%b = xpnumerics%b
+  ccnumerics%t_e = xpnumerics%t_e
+  ccnumerics%t_i = xpnumerics%t_i
+  ccnumerics%c_n = xpnumerics%c_n
+  ccnumerics%n = xpnumerics%n
+  ccnumerics%c_lambda = xpnumerics%c_lambda
+  ccnumerics%lambda = xpnumerics%lambda
+
+  ccnumerics%depth = xpnumerics%depth
+  ccnumerics%lpscale = xpnumerics%lpscale
+  ccnumerics%polang = xpnumerics%polang
+  ccnumerics%rmajor = xpnumerics%rmajor
+  ccnumerics%rminor = xpnumerics%rminor
+  ccnumerics%b1 = xpnumerics%b1
+  ccnumerics%b_formula = xpnumerics%b_formula
+
   plot%xpcout = plot_xpcout
   plot%vtk = plot_vtk
   plot%gnu = plot_gnu

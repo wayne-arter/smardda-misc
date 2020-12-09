@@ -1,16 +1,12 @@
 # basic Makefile
 
 # config file.
-#include ../config/config.inc
-include ./config.inc
-
+include ./config/config.inc
  
 # Libraries
-#LIBS = ./LIB/lib$(DBG).a
+LIBS = ./LIB/libsmarddabit$(DBG).a
 
 SOURCES = \
-lowor.f \
-isnumb.f \
 const_kind_m.f90 \
 const_numphys_h.f90 \
 date_time_m.f90 \

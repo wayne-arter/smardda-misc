@@ -258,7 +258,7 @@ subroutine xpc_solve(self)
   !! local
   character(*), parameter :: s_name='xpc_solve' !< subroutine name
 
-  call clcoef_solve(self%clcoef,self%n)
+  call clcoef_solve(self%clcoef)
 
 end subroutine xpc_solve
 !---------------------------------------------------------------------

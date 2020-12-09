@@ -1,7 +1,6 @@
 module clcoef_m
 
   use clcoef_h
-  use xpc_h
   use log_m
   use const_numphys_h
   use const_kind_m
@@ -184,27 +183,25 @@ subroutine clcoef_readcon(selfn,channel)
 end  subroutine clcoef_readcon
 !---------------------------------------------------------------------
 !> generic subroutine
-subroutine clcoef_solve(self,xpnumerics)
+subroutine clcoef_solve(self)
 
   !! arguments
   type(clcoef_t), intent(inout) :: self !< module object
-  type(xpnumerics_t), intent(in) :: xpnumerics !< control  parameters
 
   !! local
   character(*), parameter :: s_name='clcoef_solve' !< subroutine name
 
-  call clcoef_numcalc(self,xpnumerics)
+  call clcoef_numcalc(self)
 
-  call clcoef_calc(self,xpnumerics)
+  call clcoef_calc(self)
 
 end subroutine clcoef_solve
 !---------------------------------------------------------------------
 !> calculate classical coefficients
-subroutine clcoef_calc(self,xpnumerics)
+subroutine clcoef_calc(self)
 
   !! arguments
   type(clcoef_t), intent(inout) :: self   !< object data structure
-  type(xpnumerics_t), intent(in) :: xpnumerics !< control  parameters
 
   !! local
   character(*), parameter :: s_name='clcoef_calc' !< subroutine name
@@ -227,22 +224,22 @@ subroutine clcoef_calc(self,xpnumerics)
 
   real(kr8) :: b1r !< local variable
 
-  a = xpnumerics%a
-  z = xpnumerics%z
-  b = xpnumerics%b
-  n = xpnumerics%n
-  t_e = xpnumerics%t_e
-  t_i = xpnumerics%t_i
-  c_n = xpnumerics%c_n
-  lambda = xpnumerics%lambda
-  depth = xpnumerics%depth
-  lpscale = xpnumerics%lpscale
-  polang = xpnumerics%polang
-  rmajor = xpnumerics%rmajor
-  rminor = xpnumerics%rminor
-  b1 = xpnumerics%b1
+  a = self%n%a
+  z = self%n%z
+  b = self%n%b
+  n = self%n%n
+  t_e = self%n%t_e
+  t_i = self%n%t_i
+  c_n = self%n%c_n
+  lambda = self%n%lambda
+  depth = self%n%depth
+  lpscale = self%n%lpscale
+  polang = self%n%polang
+  rmajor = self%n%rmajor
+  rminor = self%n%rminor
+  b1 = self%n%b1
 
-  field_type: select case(xpnumerics%b_formula)
+  field_type: select case(self%n%b_formula)
   case('shear')
   b1r=b1*depth/rminor
   case('toroidal')
@@ -362,11 +359,10 @@ subroutine clcoef_write(self,channel)
 end subroutine clcoef_write
 !---------------------------------------------------------------------
 !> calculate classical numerical coefficients
-subroutine clcoef_numcalc(self,xpnumerics)
+subroutine clcoef_numcalc(self)
 
   !! arguments
   type(clcoef_t), intent(inout) :: self   !< object data structure
-  type(xpnumerics_t), intent(in) :: xpnumerics !< control  parameters
 
   !! local
   character(*), parameter :: s_name='clcoef_numcalc' !< subroutine name
@@ -374,8 +370,8 @@ subroutine clcoef_numcalc(self,xpnumerics)
   real(kr8) :: lambda !< local variable
   real(kr8) :: c_lambda !< local variable
 
-  c_n = xpnumerics%c_n
-  c_lambda = xpnumerics%c_lambda
+  c_n = self%n%c_n
+  c_lambda = self%n%c_lambda
 
   self%c_omega_ce=const_charge/const_masse
 
