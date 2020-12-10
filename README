@@ -1,0 +1,20 @@
+Demonstrates code generation into style of smardda-qprog,
+example of Braginskii plasma transport coefficients.
+
+The relevant linux commands are
+#compile and link program xpc
+cd f95
+make -f Makefile.xpc
+#run test case
+cd TEST
+../xpc test2.ctl
+
+Output will appear in 
+smardda-misc/f95/TEST/test2_xpc.out
+and should agree with
+smardda-misc/TEST/test1_xpc.out
+
+The files xpc.txt and clcoef.txt contain the key control and object variables for xpc,
+and would form a basis for documenting the necessary inputs to the code (TO DO).
+
+
