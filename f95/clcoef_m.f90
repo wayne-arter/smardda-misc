@@ -304,6 +304,8 @@ subroutine clcoef_calc(self)
   self%eta=(0.51*sqrt(const_masse)*const_charge**2*lambda*z)/(6*sqrt(const_pid)*sqrt(2._kr8)*  &
  &const_epsilon0**2*const_mu0*const_pid)/(sqrt(z_te*t_e)*abs(z_te)*abs(t_e))
 
+  self%sigma=1/(const_mu0*self%eta)
+
   self%nu_eperp=self%nu_epara*(0.51/0.73)/self%x_e**2
   self%nu_iperp=self%nu_ipara*(0.3/0.96)/self%x_i**2
 
@@ -351,6 +353,7 @@ subroutine clcoef_write(self,channel)
   write(channel,zcfmt) 'kappa_epara = ', self%kappa_epara
   write(channel,zcfmt) 'kappa_eperp = ', self%kappa_eperp
   write(channel,zcfmt) 'eta = ', self%eta
+  write(channel,zcfmt) 'sigma = ', self%sigma
   write(channel,zcfmt) 'ra = ', self%ra
   write(channel,zcfmt) 'chandraq = ', self%chandraq
   write(channel,zcfmt) 'beta = ', self%beta

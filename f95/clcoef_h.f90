@@ -52,6 +52,7 @@ module clcoef_h
      real(kr8) :: kappa_ipara !< parallel ion thermal diffusivity
      real(kr8) :: kappa_iperp !< perpendicular ion thermal diffusivity
      real(kr8) :: eta !< parallel resistive diffusion
+     real(kr8) :: sigma !< parallel electrical conductivity
      real(kr8) :: ra !<  Rayleigh number
      real(kr8) :: chandraq !<  Chandrasekhar number
      real(kr8) :: beta !<  plasma beta
