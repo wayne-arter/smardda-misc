@@ -1,5 +1,6 @@
 Demonstrates code generation into style of smardda-qprog,
-example of Braginskii plasma transport coefficients.
+example of Braginskii plasma transport coefficients and dimensionless
+groups in equivalent classical convection problems.
 
 The relevant linux commands are
 #compile and link program xpc
@@ -7,6 +8,7 @@ cd f95
 make -f Makefile.xpc
 #run test case
 cd TEST
+cp test0.ctl test2.ctl
 ../xpc test2.ctl
 
 Output will appear in 
@@ -14,7 +16,20 @@ smardda-misc/f95/TEST/test2_xpc.out
 and should agree with
 smardda-misc/TEST/test1_xpc.out
 
+The inputs describing the key plasma parameters are listed in commented Fortran namelist
+format in test0.ctl.
+
 The files xpc.txt and clcoef.txt contain the key control and object variables for xpc,
-and would form a basis for documenting the necessary inputs to the code (TO DO).
+and form a basis for documenting the necessary inputs to the code.
+Thus
+1. clcoef.txt gives short descriptions of the output variables in the .out file
+These are of three types
+   i.   Braginskii coefficients (in SI units)
+   ii.  Dimensionless groups appearing in classical convection theory (eg. Rayleigh number)
+   iii. Numerical multipliers (in SI units) of the Braginskii coefficients and dimensionless
+        groups, assuming number density in multiples of number_density_factor
+        and Coulomb logarithm in multiples of Coulomb_logarithm_factor. (Te is always 1eV)
+2. xpc.txt gives short names corresponding to the input variables, useful for
+understanding the source code.
 
 

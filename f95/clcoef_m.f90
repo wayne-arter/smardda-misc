@@ -248,10 +248,10 @@ subroutine clcoef_calc(self)
   b1r=b1
   end select field_type
 
-!       coulomb log formula electron-electron
+!       coulomb log formula electron-ion
   if (lambda<=0) then
      if(t_e<=10.0) then
-        lambda=23+log(1000*t_e*sqrt(t_e)/sqrt(n))
+        lambda=23+log( 1000*t_e*sqrt(t_e)/(z*sqrt(n)) )
      else
         lambda=24+log(1000*t_e/sqrt(n))
      end if
@@ -338,22 +338,32 @@ subroutine clcoef_write(self,channel)
   write(channel,zcfmt) 'omega_ci = ', self%omega_ci
   write(channel,zcfmt) 'tau_e = ', self%tau_e
   write(channel,zcfmt) 'tau_i = ', self%tau_i
+  write(channel,'(A)') '! Thermal conductivity'
   write(channel,zcfmt) 'kappab_epara = ', self%kappab_epara
   write(channel,zcfmt) 'kappab_eperp = ', self%kappab_eperp
   write(channel,zcfmt) 'kappab_ipara = ', self%kappab_ipara
   write(channel,zcfmt) 'kappab_iperp = ', self%kappab_iperp
   write(channel,zcfmt) 'x_e = ', self%x_e
   write(channel,zcfmt) 'x_i = ', self%x_i
+  write(channel,'(A)') '! Braginskii as diffusion coefficients'
+  write(channel,'(A)') '!! Viscosity for perpendicular v-component'
   write(channel,zcfmt) 'nu_epara = ', self%nu_epara
   write(channel,zcfmt) 'nu_eperp = ', self%nu_eperp
   write(channel,zcfmt) 'nu_ipara = ', self%nu_ipara
   write(channel,zcfmt) 'nu_iperp = ', self%nu_iperp
+  write(channel,'(A)') '!! Viscosity for parallel v-component'
+  write(channel,zcfmt) 'nu_epara = ', 4*self%nu_epara/3
+  write(channel,zcfmt) 'nu_eperp = ', 4*self%nu_eperp
+  write(channel,zcfmt) 'nu_ipara = ', 4*self%nu_ipara/3
+  write(channel,zcfmt) 'nu_iperp = ', 4*self%nu_iperp
   write(channel,zcfmt) 'kappa_ipara = ', self%kappa_ipara
   write(channel,zcfmt) 'kappa_iperp = ', self%kappa_iperp
   write(channel,zcfmt) 'kappa_epara = ', self%kappa_epara
   write(channel,zcfmt) 'kappa_eperp = ', self%kappa_eperp
+  write(channel,'(A)') '!! Resistivity and electrical conductivity'
   write(channel,zcfmt) 'eta = ', self%eta
   write(channel,zcfmt) 'sigma = ', self%sigma
+  write(channel,'(A)') '! Dimensionless groups'
   write(channel,zcfmt) 'ra = ', self%ra
   write(channel,zcfmt) 'chandraq = ', self%chandraq
   write(channel,zcfmt) 'beta = ', self%beta
@@ -432,6 +442,7 @@ subroutine clcoef_numwrite(self,channel)
   character(*), parameter :: s_name='clcoef_numwrite' !< subroutine name
   character(30), parameter :: zcfmt='(A,1P,G14.5)' !< format sta
 
+  write(channel,'(A)') '! Numerical coefficients'
   write(channel,zcfmt) 'c_omega_ce = ', self%c_omega_ce
   write(channel,zcfmt) 'c_omega_ci = ', self%c_omega_ci
   write(channel,zcfmt) 'c_tau_e = ', self%c_tau_e

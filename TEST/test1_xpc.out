@@ -18,6 +18,7 @@ kappa_iperp =    2.95547E-03
 kappa_epara =    2.96172E+06
 kappa_eperp =    2.32803E-04
 eta =     18.531    
+sigma =     42943.    
 ra =    1.94956E+09
 chandraq =    3.86087E+12
 beta =    8.05342E-06
