@@ -3,26 +3,37 @@ omega_ce =    1.75882E+11
 omega_ci =    9.57883E+07
 tau_e =    7.77195E-07
 tau_i =    4.70977E-05
+! Thermal conductivity
 kappab_epara =    4.37423E+24
 kappab_eperp =    3.43832E+14
 kappab_ipara =    1.75945E+23
 kappab_iperp =    4.43320E+15
 x_e =    1.36695E+05
 x_i =     4511.4    
+! Braginskii as diffusion coefficients
+!! Viscosity for perpendicular v-component
 nu_epara =    9.97871E+05
 nu_eperp =    3.73094E-05
 nu_ipara =     43310.    
 nu_iperp =    6.64981E-04
+!! Viscosity for parallel v-component
+nu_epara =    1.33050E+06
+nu_eperp =    1.49238E-04
+nu_ipara =     57746.    
+nu_iperp =    2.65992E-03
 kappa_ipara =     60152.    
 kappa_iperp =    2.95547E-03
 kappa_epara =    2.96172E+06
 kappa_eperp =    2.32803E-04
+!! Resistivity and electrical conductivity
 eta =     18.531    
 sigma =     42943.    
+! Dimensionless groups
 ra =    1.94956E+09
 chandraq =    3.86087E+12
 beta =    8.05342E-06
 lunds =     11771.    
+! Numerical coefficients
 c_omega_ce =    1.75882E+11
 c_omega_ci =    9.57883E+07
 c_tau_e =    3.44079E-07
