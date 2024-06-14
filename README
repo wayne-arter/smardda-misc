@@ -7,9 +7,9 @@ The relevant linux commands are
 cd f95
 make -f Makefile.xpc
 #run test case
-cd TEST
+cd ../TEST
 cp test0.ctl test2.ctl
-../xpc test2.ctl
+../f95/xpc test2.ctl
 
 Output will appear in 
 smardda-misc/f95/TEST/test2_xpc.out
